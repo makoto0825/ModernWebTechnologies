@@ -1,0 +1,6 @@
+npm init -y
+npm i express nodemon
+create a new file : ".env"
+cetae a new file; index.js
+modify package.json with -> "type": "module"
+node index.js -- lunch the server
