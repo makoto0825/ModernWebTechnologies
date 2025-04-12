@@ -4,10 +4,10 @@ import Link from 'next/link';
 interface CategoryCardProps {
   title: string;
   imageSrc: string;
-  link: string;
+  productId: string;
 }
 
-const CategoryCard = ({ title, imageSrc, link }: CategoryCardProps) => {
+const CategoryCard = ({ title, imageSrc, productId }: CategoryCardProps) => {
   return (
     <div className='bg-white p-4 flex flex-col'>
       <h2 className='text-xl font-bold mb-4'>{title}</h2>
@@ -20,7 +20,7 @@ const CategoryCard = ({ title, imageSrc, link }: CategoryCardProps) => {
         />
       </div>
       <Link
-        href={link}
+        href={`/product/${productId}`}
         className='text-sm text-blue-500 hover:text-blue-600 hover:underline mt-auto'
       >
         Shop now
