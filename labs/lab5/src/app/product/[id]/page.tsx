@@ -1,51 +1,65 @@
 import Image from 'next/image';
 
+interface Product {
+  id: string;
+  title: string;
+  price: number;
+  description: string;
+  features: string[];
+  images: string[];
+  category: string;
+}
+
+type ProductsType = {
+  [key: string]: Product;
+};
+
 // 商品データ（実際のアプリケーションではAPIやデータベースから取得）
-const products = {
+const products: ProductsType = {
   '1': {
     id: '1',
-    title: 'ワイヤレスイヤホン',
+    title: 'Wireless Earbuds',
     price: 19999,
     description:
-      '最新のノイズキャンセリング技術を搭載したワイヤレスイヤホン。最大24時間の連続再生が可能で、防水機能も備えています。',
+      'Premium wireless earbuds featuring the latest noise-cancelling technology. Enjoy up to 24 hours of continuous playback with water resistance capabilities.',
     features: [
-      '高性能ノイズキャンセリング',
-      'Bluetooth 5.2対応',
-      'IPX4防水',
-      'タッチセンサー搭載',
-      '急速充電対応',
+      'Advanced Noise Cancellation',
+      'Bluetooth 5.2 Compatible',
+      'IPX4 Water Resistant',
+      'Touch Sensor Controls',
+      'Fast Charging Support',
     ],
     images: ['/images/electronics.jpg'],
     category: 'Electronics',
   },
   '2': {
     id: '2',
-    title: 'スキンケアセット',
+    title: 'Skincare Set',
     price: 12800,
     description:
-      '自然由来の成分を使用した5点セットのスキンケア商品。敏感肌の方にも安心してお使いいただけます。',
+      'A 5-piece skincare set made with natural ingredients. Safe for sensitive skin and dermatologically tested.',
     features: [
-      '無添加処方',
-      '保湿効果',
-      'エイジングケア',
-      '敏感肌対応',
-      '日本製',
+      'All Natural Formula',
+      'Deep Hydration',
+      'Anti-aging Benefits',
+      'Sensitive Skin Safe',
+      'Made in Japan',
     ],
     images: ['/images/beauty.jpg'],
     category: 'Beauty',
   },
   '3': {
     id: '3',
-    title: '多機能調理器',
+    title: 'Multi-function Cooker',
     price: 24800,
     description:
-      '10種類以上の調理モードを搭載した多機能調理器。時短調理から本格料理まで幅広く対応します。',
+      'Versatile cooking appliance with over 10 cooking modes. Perfect for quick meals and gourmet cooking alike.',
     features: [
-      '10種類の調理モード',
-      '大容量6L',
-      'タイマー機能',
-      '自動保温機能',
-      'レシピブック付き',
+      '10 Cooking Modes',
+      '6L Capacity',
+      'Timer Function',
+      'Auto Keep Warm',
+      'Recipe Book Included',
     ],
     images: ['/images/home-kitchen.jpg'],
     category: 'Home & Kitchen',
@@ -53,16 +67,16 @@ const products = {
 };
 
 export default function ProductPage({ params }: { params: { id: string } }) {
-  const product = products[params.id];
+  const product = products[params.id] as Product | undefined;
 
   if (!product) {
-    return <div className='text-center p-8'>商品が見つかりません</div>;
+    return <div className='text-center p-8'>Product not found</div>;
   }
 
   return (
     <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-        {/* 商品画像 */}
+        {/* Product Image */}
         <div className='relative h-96 bg-gray-100 rounded-lg overflow-hidden'>
           <Image
             src={product.images[0]}
@@ -73,7 +87,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           />
         </div>
 
-        {/* 商品情報 */}
+        {/* Product Information */}
         <div className='flex flex-col'>
           <div className='mb-4'>
             <h1 className='text-3xl font-bold text-gray-900 mb-2'>
@@ -89,12 +103,12 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </div>
 
           <div className='mb-6'>
-            <h2 className='text-lg font-semibold mb-2'>商品説明</h2>
+            <h2 className='text-lg font-semibold mb-2'>Description</h2>
             <p className='text-gray-600'>{product.description}</p>
           </div>
 
           <div className='mb-6'>
-            <h2 className='text-lg font-semibold mb-2'>特徴</h2>
+            <h2 className='text-lg font-semibold mb-2'>Features</h2>
             <ul className='list-disc list-inside space-y-1'>
               {product.features.map((feature, index) => (
                 <li key={index} className='text-gray-600'>
@@ -106,7 +120,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
           <div className='mt-auto'>
             <button className='w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-3 px-6 rounded-lg transition-colors'>
-              カートに追加
+              Add to Cart
             </button>
           </div>
         </div>

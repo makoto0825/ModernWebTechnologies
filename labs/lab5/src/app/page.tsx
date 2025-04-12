@@ -6,21 +6,21 @@ import ProductCard from '@/components/home/ProductCard';
 const products = [
   {
     id: '1',
-    title: 'ワイヤレスイヤホン',
+    title: 'Wireless earphones',
     price: 19999,
     image: '/images/electronics.jpg',
     category: 'Electronics',
   },
   {
     id: '2',
-    title: 'スキンケアセット',
+    title: 'Skin Care Set',
     price: 12800,
     image: '/images/beauty.jpg',
     category: 'Beauty',
   },
   {
     id: '3',
-    title: '多機能調理器',
+    title: 'multifunction cooker',
     price: 24800,
     image: '/images/home-kitchen.jpg',
     category: 'Home & Kitchen',
@@ -76,7 +76,9 @@ export default function Home() {
 
       {/* 商品一覧 */}
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
-        <h2 className='text-2xl font-bold text-gray-900 mb-8'>おすすめ商品</h2>
+        <h2 className='text-2xl font-bold text-gray-900 mb-8'>
+          Recommended Products
+        </h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
           {products.map((product) => (
             <ProductCard
